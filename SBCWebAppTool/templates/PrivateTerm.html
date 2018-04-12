@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<form action="/PrivateTerm/" method="POST" onsubmit="this.elements['Flask'].disabled=true" onsubmit="return checkform()" >
+   <div class="PrivateTerm" >
+	
+	<h3>Termination Private SIP Trunk </h3>
+    <b>SBC Hostname</b><br>
+	<div>
+    	<select name="sbcIp" multiple class="form-control"> 
+		  <option value="192.168.125.35">CARY-LABNBS-02a</option>
+		  <option value="192.168.126.135">LAB1-CASBC-01a.lab1</option>
+		  
+		</select>
+	</div>
+	<br>
+	<b>Zone</b> <br>
+	<input name="zoneName" placeholder="Enter Zone name"  style="font-size:0.5em" size="75" required></input>
+	<br>
+	<input name="zoneID" placeholder="Enter Zone ID"  style="font-size:0.5em" size="75" required></input>
+	<br>
+	<br>
+	<b>Sip SIG Port</b> <br>
+	<input name="sipSigPort" placeholder="Enter IP Interface Group Name"  style="font-size:0.5em" size="75" required></input>
+	<br>
+        <input name="ipv4" placeholder="Enter unique IPv4 addresses for each selected SBC"  style="font-size:0.5em" size="75" required></input>
+        <i><font size="2" color="green">e.g 10.x.x.x,11.y.y.y, </font></i>
+        <br>
+	<br>
+	<b>Sip Trunk</b> <br>
+	<input name="sipTrunk" placeholder="Enter SIP Trunk Name" maxlength = "23"  style="font-size:0.5em" size="75" required></input>
+	<i><font size="2" color="green">e.g LEVEL3_ORIG_TF_2_PUB_TG </font></i>
+	<br>
+	<br>
+	<b>Direct Media</b>
+	<select name="directMedia" style="font-size:0.5em">
+		<option value="enabled">Enabled</option>
+		<option value="disabled">Disabled</option>
+	</select>
+	<br>
+	
+       <input type="submit"  name="Flask" value="Submit" onclick="$('#loading').show();" onclick='JavaScript: showTermPrivateHide()' style="font-size:0.5em; color:#180000;background-color:#E5E5E5">
+
+  </div>
+  
+</form>
+<div id="loading" style="display:none;"><img src="https://media.giphy.com/media/sSgvbe1m3n93G/giphy.gif" alt="Loading" width="50" height="50"/></div>
+	
+ {% endblock %}

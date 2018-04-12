@@ -1,0 +1,27 @@
+<html>
+<head>
+<script language="javascript">
+function showHide() {
+  if (document.getElementById("showdiv").style.display == "none") {
+    document.getElementById("showdiv").style.display = '';
+	//document.getElementById("t2").style.display = '';
+ 
+  } else {
+    document.getElementById("showdiv").style.display = 'none';
+	//document.getElementById("t2").style.display = 'none';
+ 
+  }
+}
+</script>
+</head>
+<body>
+<form name="test" method="post">
+<input type=checkbox name="c1" onclick='JavaScript: showHide();'>Show textbox
+<div id="showdiv" style="display:none">
+test 1 <input type="text" name="t1" id="t1">
+test 2 <input type="text" name="t2" id="t2">
+</div>
+
+</form>
+</body>
+</html>

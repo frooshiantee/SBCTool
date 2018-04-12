@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>      
+    <title>Carrier SBC TG Provisioning Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1 class="logo">Carrier SBC TG Provisioning Tool </h1>
+        <strong><nav>
+          <ul class="menu">
+            <li><a href="{{ url_for('Origination') }}"><u>Origination TG</u></a></li>
+            <li><a href="{{ url_for('PublicTerm') }}"><u>Termination Public TG</u></a></li>
+			<li><a href="{{ url_for('PrivateTerm') }}"><u>Termination Private TG</u></a></li>
+          </ul>
+        </nav></strong>
+      </div>
+    </header>
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>
+</html>

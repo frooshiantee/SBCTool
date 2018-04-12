@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</script>
+</head>
+
+<script>
+function showOrigHide() {
+	
+    document.getElementById("showOrig").style.display = '';
+	document.getElementById("showTermPrivate").style.display = 'none';
+	document.getElementById("showTermPublic").style.display = 'none';
+}
+
+
+function showTermPublicHide() {
+
+	document.getElementById("showOrig").style.display = 'none' ;
+    document.getElementById("showTermPublic").style.display = '';
+	document.getElementById("showTermPrivate").style.display = 'none' ;
+	document.getElementById("sbcIpPublic1").disabled = false;
+	document.getElementById("zoneNamePublic1").disabled = false;
+	document.getElementById("zoneIDPublic1").disabled = false;
+	document.getElementById("sipSigPortPublic1").disabled = false;
+	document.getElementById("ipv4Public1").disabled = false;
+	document.getElementById("sipTrunkPublic1").disabled = false;
+	document.getElementById("mediaPublic1").disabled = false;
+	document.getElementById("directMediaPublic1").disabled = false;
+	document.getElementById("FlaskPublic1").disabled = false;
+	
+	}
+
+function showTermPrivateHide() {
+  if (document.getElementById("showTermPrivate").style.display == "none") {
+    document.getElementById("showTermPrivate").style.display = '';
+	document.getElementById("sbcIpPublic1").disabled = true;
+	document.getElementById("zoneNamePublic1").disabled = true;
+	document.getElementById("zoneIDPublic1").disabled = true;
+	document.getElementById("sipSigPortPublic1").disabled = true;
+	document.getElementById("ipv4Public1").disabled = true;
+	document.getElementById("sipTrunkPublic1").disabled = true;
+	document.getElementById("mediaPublic1").disabled = true;
+	document.getElementById("directMediaPublic1").disabled = true;
+	document.getElementById("FlaskPublic1").disabled = true;
+	//document.getElementById("t2").style.display = '';
+ 
+  } else {
+    document.getElementById("showTermPrivate").style.display = 'none';
+	//document.getElementById("t2").style.display = 'none';
+ 
+  }
+}
+</script>
+
+<body>
+ <div id="loading" style="display:none;"><img src="loading.gif" alt="" /><b>In Progress...!!!</b></div>
+ <h1>Carrier SBC Auto Provisioning</h1>
+
+<form id ="form_1" action="/" method="POST" OnSubmit="this.elements['FlaskPublic'].disabled=true"  onSubmit='onyourRequirement();'>
+
+	<input type="radio" name="Orig" value="Orig" id="Orig" onclick='JavaScript: showOrigHide();'><label for="Orig" > Origination</label>
+	 
+	 <input type="radio" name="Orig" value="Term" id="Term" onclick='JavaScript: showTermPublicHide();'><label for="Term"> Termination</label>
+	 <br>
+	 <br>
+
+	<div id="showOrig" style="display:none">
+    <b>SBC IPs</b><br>
+    <input name="sbcIp" placeholder="Enter IP separated by comma" required></input>
+	
+	<i><font size="1.5" color="green">e.g 192.168.125.35,192.168.126.135,.....</font></i>
+	<br>
+	<br>
+	<b>Zone</b> <br>
+	<input name="zoneName" placeholder="Enter Zone name" required></input>
+	<br>
+	<input name="zoneID" placeholder="Enter Zone ID" required></input>
+	<br>
+	<br>
+	<b>Sip SIG Port</b> <br>
+	<input name="sipSigPort" placeholder="Enter IP Interface Group Name" required></input>
+	<br>
+	<input name="ipv4" placeholder="Enter IPv4 address" required></input>
+	<br>
+	<br>
+	<b>Sip Trunk</b> <br>
+	<input name="sipTrunk" placeholder="Enter SIP Trunk Name" maxlength = "23" required></input>
+	<i><font size="1.5" color="green">e.g LEVEL3_ORIG_TF_2_PUB_TG </font></i>
+	<br>
+	<input name="media" placeholder="Enter Media Interface IP Group Name" required></input>
+	<br>
+	<br>
+	<b>Direct Media</b>
+	<select name="directMedia" >
+		<option value="enabled">Enabled</option>
+		<option value="disabled">Disabled</option>
+	</select>
+	<br>
+	<br>
+	<br>
+
+       <input type="submit" name="Flask" value="Submit1" onclick="$('#loading').show();">
+	</div>   
+	
+</form>
+	
+	
+	
+<form action="/" method="POST" OnSubmit="this.elements['FlaskPublic'].disabled=true"  onSubmit='onyourRequirement();'>
+	<div id="showTermPublic" style="display:none">
+	
+	<h3><u> Public Trunk </u></h3>
+    <b>SBC IPs</b><br>
+    <input name="sbcIp" id = "sbcIpPublic1" placeholder="Enter IP separated by comma" required></input>
+	
+	<i><font size="1.5" color="green">e.g 192.168.125.35,192.168.126.135,.....</font></i>
+	<br>
+	<br>
+	<b>Zone</b> <br>
+	<input name="zoneName" id ="zoneNamePublic1" placeholder="Enter Zone name" required></input>
+	<br>
+	<input name="zoneID" id="zoneIDPublic1" placeholder="Enter Zone ID" required></input>
+	<br>
+	<br>
+	<b>Sip SIG Port</b> <br>
+	<input name="sipSigPort" id="sipSigPortPublic1" placeholder="Enter IP Interface Group Name" required></input>
+	<br>
+	<input name="ipv4" id="ipv4Public1" placeholder="Enter IPv4 address" required></input>
+	<br>
+	<br>
+	<b>Sip Trunk</b> <br>
+	<input name="sipTrunk" id="sipTrunkPublic1" placeholder="Enter SIP Trunk Name" maxlength = "23" required></input>
+	<i><font size="1.5" color="green">e.g LEVEL3_ORIG_TF_2_PUB_TG </font></i>
+	<br>
+	<input name="media" id="mediaPublic1" placeholder="Enter Media Interface IP Group Name" required></input>
+	<br>
+	<br>
+	<b>Direct Media</b>
+	<select name="directMedia" id = "directMediaPublic1">
+		<option value="enabled">Enabled</option>
+		<option value="disabled">Disabled</option>
+	</select>
+	<br>
+	<br>
+       <input type="submit" name="FlaskPublic" id ="FlaskPublic1" value="Submit2" onclick='JavaScript: showTermPrivateHide()' onclick="$('#loading').show();">  
+	 
+	 </div>
+</form>
+	 
+	 
+	 
+	 
+<form id ="form_3" action="/" method="POST" OnSubmit="this.elements['FlaskPublic'].disabled=true"  onSubmit='onyourRequirement();'>
+	 <div id="showTermPrivate" style="display:none">  
+	 <h3><u> Private Trunk </u></h3>
+    <b>SBC IPs</b><br>
+    <input name="sbcIpPrivate" placeholder="Enter IP separated by comma" required></input>
+	
+	<i><font size="1.5" color="green">e.g 192.168.125.35,192.168.126.135,.....</font></i>
+	<br>
+	<br>
+	<b>Zone</b> <br>
+	<input name="zoneNamePrivate" placeholder="Enter Zone name" required></input>
+	<br>
+	<input name="zoneIDPrivate" placeholder="Enter Zone ID" required></input>
+	<br>
+	<br>
+	<b>Sip SIG Port</b> <br>
+	<input name="sipSigPortPrivate" placeholder="Enter IP Interface Group Name" required></input>
+	<br>
+	<input name="ipv4Private" placeholder="Enter IPv4 address" required></input>
+	<br>
+	<br>
+	<b>Sip Trunk</b> <br>
+	<input name="sipTrunkPrivate" placeholder="Enter SIP Trunk Name" maxlength = "23" required></input>
+	<i><font size="1.5" color="green">e.g LEVEL3_ORIG_TF_2_PUB_TG </font></i>
+	<br>
+	<input name="mediaPrivate" placeholder="Enter Media Interface IP Group Name" required></input>
+	<br>
+	<br>
+	<b>Direct Media</b>
+	<select name="directMediaPrivate">
+		<option value="enabled">Enabled</option>
+		<option value="disabled">Disabled</option>
+	</select>
+	<br>
+	<br>
+       <input type="submit" name="FlaskPrivate" value="Submit3" onclick="$('#loading').show();">
+	
+	</div>   
+	
+		
+ </form>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</script>
+</head>
+
+<body style = "text-align:left;">
+
+<script>
+function disableEverything() {
+  if (document.getElementById("loading").style.display == "none") {
+    document.getElementById("loading").style.display = '';
+	//document.getElementById("t2").style.display = '';
+ 
+  } else {
+    document.getElementById("showOrig").style.display = 'none';
+	//document.getElementById("t2").style.display = 'none';
+ 
+  }
+}
+</script>
+<script>
+function onyourRequirement()
+{
+var elements = document.getElementsByClassName("toReadOnly")
+for(element : elements)
+      element.disable
+}
+</script>
+<form action="/" method="POST" onsubmit="this.elements['Flask'].disabled=true"  onSubmit='onyourRequirement();'>
+     <div  id="loading" style="display:none;"><img src="loading.gif" ><b>In Progress...!!!</b></div>
+	 <br>
+
+
+	<h1>Carrier SBC Auto Provisioning</h1>  
+	
+	<br>
+	
+    	<b>SBC IPs</b><br>
+		
+		<input name="sbcIp" placeholder="Enter IP separated by comma" required ></input>
+	
+		<i ><font size="1.5" color="green">e.g 192.168.125.35,192.168.126.135,.....</font></i>
+		<br>
+		<br>
+		<b>Zone</b> <br>
+		<input name="zoneName" placeholder="Enter Zone name" class="toReadOnly" required></input>
+		<br>
+		<input name="zoneID" placeholder="Enter Zone ID" required></input>
+		<br>
+		<br>
+		<b>Sip SIG Port</b> <br>
+		<input name="sipSigPort" placeholder="Enter IP Interface Group Name" required></input>
+		<br>
+		<input name="ipv4" placeholder="Enter IPv4 address" required></input>
+		<br>
+		<br>
+		<b>Sip Trunk</b> <br>
+		
+		<input name="sipTrunk" placeholder="Enter SIP Trunk Name" maxlength = "23" required></input>
+		<i><font size="1.5" color="green">e.g LEVEL3_ORIG_TF_2_PUB_TG </font></i>
+		<br>
+		<input name="media" placeholder="Enter Media Interface IP Group Name" required></input>
+		<br>
+		<br>
+		<b>Direct Media</b>
+		<select name="directMedia">
+			<option value="enabled">Enabled</option>
+			<option value="disabled">Disabled</option>
+		</select>
+	<br>
+	<br>
+	<br>
+       <input type="submit" name='Flask' value="Submit"  onclick="$('#loading').show();">
+ </form>
+
+</body>
+</html>
