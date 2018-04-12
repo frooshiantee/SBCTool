@@ -3,4 +3,4 @@
 
 
 * Clone the repository
-* Execute **python sbcTool.py &**
+* Execute ***python sbcTool.py &***
