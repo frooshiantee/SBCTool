@@ -3,27 +3,16 @@ import os
 substring = "unique"
 sipSigFail = "SIP Signaling port cannot use "
 mediaCheck = "failed to create entry"
-#privateIngressIp = ["216.82.224.202", "216.82.225.202", "67.231.8.89", "67.231.8.90", "192.168.3.88", "192.168.5.91", "192.168.8.91", "67.231.0.90", "192.168.8.90", "192.168.3.221", "67.231.5.51", "67.231.8.195", "192.168.5.22", "67.231.0.89", "67.231.4.195", "67.231.8.87", "192.168.6.221", "67.231.0.87", "192.168.6.220"];   # Modify code to read from a file 
-
-a = open('privateIPLists.txt','r')       # Edit privateIPLists.txt file to add more private IP addresses
-privateIngressIp = []
-
-for line in a:
-        i = line.rstrip()
-        privateIngressIp.append(i)
-
-#Provisioning Starts
-
+privateIngressIp = ["216.82.224.202", "216.82.225.202", "67.231.8.89", "67.231.8.90", "192.168.3.88", "192.168.5.91", "192.168.8.91", "67.231.0.90", "192.168.8.90", "192.168.3.221", "67.231.5.51", "67.231.8.195", "192.168.5.22", "67.231.0.89", "67.231.4.195", "67.231.8.87", "192.168.6.221", "67.231.0.87", "192.168.6.220"];
+# Provisioning Starts
 def curlInitiator(sbcIp,zone,zoneId,sipSigPort,ipv4,sipTrunk,media,directMedia,nature):
-    ipv4List=ipv4.split(",")
-    if len(ipv4List) != len(sbcIp):
-        return "List mismatch"
+    #sbcList=sbcIp.split(",")
     #return sbcIp
 #    print sbcList
 #    print 'SBC', sbcip
 #    print 'Zone', zone
  #   sbcList = sbcIp.keys()
-    index = 0
+
     for i in sbcIp:
         print i
         ''' #uncomment for production
@@ -42,8 +31,7 @@ def curlInitiator(sbcIp,zone,zoneId,sipSigPort,ipv4,sipTrunk,media,directMedia,n
                 media = "E_MEDIA" ''' #uncomment for produiction
 
         os.system('curl -ksiX POST https://'+i+'/api/config/addressContext/default/ -H "authorization: Basic Q0FMVklORjpCV0NpbnQzcm4yMCE3" -H "cache-control: no-cache" -H "Content-type:application/vnd.yang.data+xml" --data "<zone> <name>'+zone+'</name><id>'+zoneId+'</id> </zone>"')
-        log = os.popen('curl -ksiX POST https://'+i+'/api/config/addressContext/default/zone/'+zone+'/  -H "authorization: Basic Q0FMVklORjpCV0NpbnQzcm4yMCE3" -H "cache-control: no-cache" -H "Content-type:application/vnd.yang.data+xml" --data "<sipSigPort> <index>'+zoneId+'</index><state>enabled</state><ipInterfaceGroupName>'+sipSigPort+'</ipInterfaceGroupName><ipAddressV4>'+ipv4List[index]+'</ipAddressV4> </sipSigPort>"').read()
-        index += 1
+        log = os.popen('curl -ksiX POST https://'+i+'/api/config/addressContext/default/zone/'+zone+'/  -H "authorization: Basic Q0FMVklORjpCV0NpbnQzcm4yMCE3" -H "cache-control: no-cache" -H "Content-type:application/vnd.yang.data+xml" --data "<sipSigPort> <index>'+zoneId+'</index><state>enabled</state><ipInterfaceGroupName>'+sipSigPort+'</ipInterfaceGroupName><ipAddressV4>'+ipv4+'</ipAddressV4> </sipSigPort>"').read()
         if sipSigFail in log:
             return "SipSigFail"
         if substring in log:
