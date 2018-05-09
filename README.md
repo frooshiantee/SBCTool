@@ -9,3 +9,7 @@
 * Read ***'Guide to Access  Carrier SBC Provisioning Tool.pdf'*** (found uder SBCTool/SBCWebAppTool/ ) for instructions to use the tool 
 
 * Read ([Troubleshooting Guide](https://github.com/cfernando3/SBCTool/blob/master/Troubleshooting%20Guide%20.pdf)) --> ***Troubleshooting steps whenever the lab clecvoip-02.lab1(192.168.100.110) VM is restarted or rebooted/the application/containers in stop status***
+
+## Dashboard snapshot
+
+![image](https://user-images.githubusercontent.com/36050047/39837647-12cd08b2-53a5-11e8-99bb-4b81859193b1.png)
